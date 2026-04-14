@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Belépés | Cirmos Napilap</title>
+  <link rel="stylesheet" href="/css/login.css">
+</head>
+<body>
+
+  <div id="group">
+    <h2>Admin Belépés</h2>
+    
+    <% if (error) { %>
+      <p><%= error %></p>
+    <% } %>
+
+    <form action="/administrator/login" method="POST">
+      <div>
+        <label>Felhasználónév</label>
+        <input type="text" name="username" required>
+      </div>
+      <div>
+        <label>Jelszó</label>
+        <input type="password" name="password" required>
+      </div>
+      <button type="submit">
+        Belépés
+      </button>
+    </form>
+  </div>
+
+</body>
+</html>

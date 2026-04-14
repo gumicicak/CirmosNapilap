@@ -1,0 +1,262 @@
+/* ==========================================================================
+   1. THE "GLASS ONION" PALETTE & FONTS
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Playfair+Display:ital,wght@0,900;1,900&family=Source+Sans+Pro:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oleo+Script+Swash+Caps:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dongle&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Rashi+Hebrew:wght@100..900&display=swap');
+
+:root {
+  --tweed: #FFB8E0;      /* Deep Brown / Pinkish Tweed */
+  --mustard: #BE5985;    /* Blanc's Linen Suit */
+  --marble: #FFEDFA;     /* The Mansion Floors */
+  --ink: #1a1a1a;
+  --accent-red: #8b0000; /* Mystery Blood */
+  --border: 2px solid var(--tweed);
+} 
+
+/* ==========================================================================
+   2. GLOBAL STYLES
+   ========================================================================== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background-color: var(--marble);
+  color: var(--ink);
+  font-family: "Dongle", sans-serif;
+  font-weight: 300;
+  line-height: 1.1;
+  font-size: 1.8rem;
+  background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+  overflow-x: hidden; /* Prevent horizontal scroll on mobile */
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* ==========================================================================
+   3. RESPONSIVE NAVBAR
+   ========================================================================== */
+.navbar {
+  background: var(--tweed);
+  padding: 0.5rem 5%;
+  color: var(--mustard);
+  border-bottom: 8px solid var(--mustard);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 1000;
+}
+
+.navbar-left {
+  font-family: "Oleo Script Swash Caps", system-ui;
+  font-weight: 700;
+  font-size: 5rem;
+  color: var(--marble);
+  text-shadow: 3px 3px var(--mustard);
+  margin: 0.5rem 0;
+  text-align: center;
+}
+
+/* Checkbox Hack for Mobile Menu */
+.nav-toggle { display: none; }
+
+.hamburger {
+  display: none; /* Hidden on desktop */
+  cursor: pointer;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.hamburger span, .hamburger span::before, .hamburger span::after {
+  display: block;
+  background: var(--marble);
+  height: 3px;
+  width: 30px;
+  position: relative;
+  transition: all 0.3s ease-in-out;
+}
+.hamburger span::before { content: ""; top: -10px; position: absolute; width: 30px; background: var(--marble); height: 3px; }
+.hamburger span::after { content: ""; top: 10px; position: absolute; width: 30px; background: var(--marble); height: 3px; }
+
+.navbar-right ul {
+  display: flex;
+  gap: 3rem;
+  list-style: none;
+}
+
+.navbar-right li {
+  font-family: "Fredoka", sans-serif;
+  font-weight: 600;
+  font-size: 1.4rem;
+  color: var(--marble);
+  text-shadow: 2px 2px 1px #be5985af;
+  padding-bottom: 1rem;
+  transition: 0.3s;
+  text-transform: uppercase;
+}
+
+.navbar-right li:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+  text-shadow: 0px 0px 5px var(--marble);
+}
+
+/* ==========================================================================
+   4. MAIN CONTENT & GRID
+   ========================================================================== */
+main {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.exclusive-news-section {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  background: white;
+  border: var(--border);
+  box-shadow: 20px 20px 0px var(--mustard);
+}
+
+.exclusive-news {
+  padding: 2rem;
+  border-right: var(--border);
+}
+
+#exclusiveNews{
+  min-width: 80%;
+  max-width: 80%;
+}
+
+.exclusive-news img {
+  height: 450px;
+  width: 100%;
+  object-fit: cover;
+  padding: 10px;
+  margin-bottom: 1rem;
+}
+
+.exclusive-news h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  text-align: center;
+  line-height: 1;
+  color: #c17093;
+}
+
+.sidebar {
+  color: var(--mustard);
+  background: var(--marble);
+  padding: 2rem;
+}
+
+.sidebar h3 {
+  font-family: 'Playfair Display', serif;
+  border-bottom: 2px solid var(--tweed);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.sidebar li {
+  list-style: none;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.sidebar li:hover { transform: scale(1.02); cursor: pointer; }
+
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 3rem;
+  margin-top: 5rem;
+}
+
+.news-column {
+  background: white;
+  padding: 1.5rem;
+  border: 1px solid rgba(0,0,0,0.1);
+  position: relative;
+  transition: 0.3s ease-in-out;
+}
+
+.news-column:after {
+  content: "";
+  position: absolute;
+  top: -10px; left: 50%;
+  width: 100px; height: 30px;
+  background: #ffd4ec89;
+  transform: translateX(-50%) rotate(-2deg);
+}
+
+.news-column img { width: 100%; aspect-ratio: 4/3; object-fit: cover; margin-bottom: 0.7rem; }
+.news-column:hover { transform: translateY(-10px); cursor: pointer; }
+
+.text-content h3 {
+  font-family: "Noto Rashi Hebrew", serif;
+  font-weight: 550;
+  font-size: 1.5rem;
+  margin-bottom: 0.7rem;
+  color: var(--mustard);
+}
+
+/* ==========================================================================
+   5. FOOTER
+   ========================================================================== */
+.footer {
+  background: var(--tweed);
+  color: var(--marble);
+  padding: 2rem;
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  border-top: 8px solid var(--mustard);
+  margin-top: 4rem;
+}
+
+.exclusive-news-section {
+  display: flex;
+}
+
+/* ==========================================================================
+   6. MEDIA QUERIES (The Fix)
+   ========================================================================== */
+@media screen and (max-width: 900px) {
+  /* Navbar logic */
+  .navbar-left { font-size: 3rem; }
+  .hamburger { display: block; }
+  .navbar-right { display: none; width: 100%; text-align: center; }
+  .navbar-right ul { flex-direction: column; gap: 0; padding: 1rem 0; }
+  .navbar-right li { padding: 1rem; border-bottom: 1px solid rgba(255,255,255,0.2); }
+  .nav-toggle:checked ~ .navbar-right { display: block; }
+  
+  /* Animated Hamburger */
+  .nav-toggle:checked + .hamburger span { background: transparent; }
+  .nav-toggle:checked + .hamburger span::before { transform: rotate(45deg); top: 0; }
+  .nav-toggle:checked + .hamburger span::after { transform: rotate(-45deg); top: 0; }
+
+  .exclusive-news-section {
+    display: grid ; 
+    grid-template-columns: 1fr ;
+    box-shadow: 10px 10px 0px var(--mustard);
+  }
+
+  .exclusive-news { 
+    border-right: none ; 
+    border-bottom: var(--border);
+    padding: 1.5rem;
+    width: 100% ;
+  }
+
+  #exclusiveNews { 
+    min-width: 100% ; 
+    max-width: 100% ;
+  }
+
+  .exclusive-news img { 
+    height: auto ;
+}}

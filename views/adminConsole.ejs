@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+  <div class="admin-container">
+    <h1>Cikk Műszerfal</h1>
+
+    <div class="form-card">
+      <h3><%= editingArticle ? 'Cikk Szerkesztés' : 'Új Cikk' %></h3>
+      <form action="/administrator/save" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="id" value="<%= editingArticle ? editingArticle.id : '' %>">
+        <div class="form-group"><label>Cím</label><input type="text" name="title" required value="<%= editingArticle ? editingArticle.title : '' %>"></div>
+        <div class="form-group"><label>Kép</label><input type="file" name="image" accept="image/*"></div>
+        <div class="form-group"><label>Tartalom</label><textarea name="text" required><%= editingArticle ? editingArticle.text : '' %></textarea></div>
+        <div id="dropdown-group">
+          <div class="form-group"><label>Szerző</label><select name="writer_id">
+              <% writers.forEach(w => { %><option value="<%= w.id %>" <%= editingArticle && editingArticle.writer_id == w.id ? 'selected' : '' %>><%= w.name %></option><% }) %>
+            </select></div>
+          <div class="form-group"><label>Kategória</label><select name="category_id">
+              <% categories.forEach(c => { %><option value="<%= c.id %>" <%= editingArticle && editingArticle.category_id == c.id ? 'selected' : '' %>><%= c.name %></option><% }) %>
+            </select></div>
+        </div>
+        <button type="submit" class="btn btn-save">Cikk mentése</button>
+        <% if (editingArticle) { %> <a href="/administrator/console" class="btn">Mégse</a> <% } %>
+      </form>
+    </div>
+
+    <div id="search">
+      <form action="/administrator/console" method="GET">
+        <input type="text" name="search" placeholder="Keresés a cikkek között..." value="<%= searchTerm %>">
+        <button type="submit" class="btn">Keresés</button>
+        <% if (searchTerm) { %> <a href="/administrator/console" class="btn">Clear</a> <% } %>
+      </form>
+    </div>
+
+    <table>
+      <thead><tr><th>Cím</th><th>Szerző</th><th>Művelet</th></tr></thead>
+      <tbody>
+        <% articles.forEach(a => { %>
+          <tr>
+            <td><%= a.title %></td>
+            <td><%= a.writer_name %></td>
+            <td>
+              <a href="/administrator/edit/<%= a.id %>?search=<%= searchTerm %>" class="btn btn-edit">Szerkesztés</a>
+              <a href="/administrator/delete/<%= a.id %>" class="btn btn-delete" onclick="return confirm('Biztos törlöd?')">Törlés</a>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

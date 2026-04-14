@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cirmos Napilap</title>
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+
+  <header>
+    <nav class="navbar">
+      <div class="navbar-left" id="siteTitle" data-category="all">
+        Cirmos Napilap
+      </div>
+      
+      <input type="checkbox" id="nav-toggle" class="nav-toggle">
+      <label for="nav-toggle" class="hamburger">
+        <span></span>
+      </label>
+
+      <div class="navbar-right">
+        <ul>
+          <li data-category="Széchenyi">Széchenyi</li>
+          <li data-category="Világ">Világ</li>
+          <li data-category="Vélemény">Vélemény</li>
+          <li data-category="Gazdaság">Gazdaság</li>
+          <li data-category="Szórakozás">Szórakozás</li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="exclusive-news-section">
+      <div class="exclusive-news" id="exclusiveNews"> 
+        </div>
+      <aside class="sidebar">
+        <h3>Kiemelt Híreink</h3>
+        <ul id="popularNews">
+          </ul>
+      </aside>
+    </section>
+
+    <hr class="divider">
+
+    <section class="news-grid" id="newsGrid">
+      </section>
+  </main>
+
+  <footer class="footer">
+    <p>© 2026 Cirmos Napilap</p>
+  </footer>
+
+  <script type="module" src="./js/script.js"></script>
+</body>
+</html>
