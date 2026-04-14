@@ -27,7 +27,7 @@ exports.loginAdmin = async (req, res) => {
       req.session.isAdmin = true;
       res.redirect('/administrator/console');
     } else {
-      res.render('login', { error: 'Invalid credentials' });
+      res.render('login', { error: 'Hibás Felhasználónév/Jelszó' });
     }
   } catch (err) {
     console.error('Login error:', err);
