@@ -1,0 +1,2 @@
+npm init -y
+npm install express node nodemon ejs body-parser mysql2 multer express-session path
