@@ -1,19 +1,19 @@
 const express = require("express");
 const router = express.Router();
 const controller = require("../controller/controller");
-const newsController = require("../controller/newsController");
+const AdminController = require("../controller/AdminController");
 
 // Public API
 router.get("/getHirek", controller.getHirek);
 
 // Admin Authentication
 router.get("/administrator", (req, res) => res.render("login", { error: null }));
-router.post("/administrator/login", newsController.loginAdmin);
+router.post("/administrator/login", AdminController.loginAdmin);
 
 // Admin Dashboard (Protected)
-router.get("/administrator/console", newsController.isAuthenticated, newsController.getConsole);
-router.post("/administrator/save", newsController.isAuthenticated, newsController.upload.single('image'), newsController.saveArticle);
-router.get("/administrator/edit/:id", newsController.isAuthenticated, newsController.editArticleView);
-router.get("/administrator/delete/:id", newsController.isAuthenticated, newsController.deleteArticle);
+router.get("/administrator/console", AdminController.isAuthenticated, AdminController.getConsole);
+router.post("/administrator/save", AdminController.isAuthenticated, AdminController.upload.single('image'), AdminController.saveArticle);
+router.get("/administrator/edit/:id", AdminController.isAuthenticated, AdminController.editArticleView);
+router.get("/administrator/delete/:id", AdminController.isAuthenticated, AdminController.deleteArticle);
 
 module.exports = router;
